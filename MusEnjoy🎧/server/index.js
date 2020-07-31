@@ -7,21 +7,14 @@ require('dotenv').config()
 const uriDb = process.env.MONGO_URI
 app.use(bodyParser.urlencoded({extended: false}));
 const userData = require('./model/superUserSchema');
-// const routerr = require('./routes/router.js');
-var router = express.Router()
-
-router.post('/', (req, res)=>{
-  res.send(console.log(req.body))
- })
-app.use('/signUp',router)
+// const routes = require('./routes/router.js');
+const userAuth = require('./routes/auth');
 
 
 
 
-// app.use(logger('dev'));
-
-
-mongoose.connect(uriDb, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(uriDb, {useCreateIndex: true,
+  useNewUrlParser: true, useUnifiedTopology: true});
 
 const superdb = mongoose.connection;
 
@@ -33,13 +26,17 @@ superdb.once('open', function() {
   });
 
 
-app.get('/', (req, res)=>{
-  res.send('HellO')
-});
+// app.get('/', (req, res)=>{
+//   console.log(req.url);
+//   res.send('HellO')
+// });
 
-app.post('/', (req, res)=>{
-  console.log('inserted')
-});
+app.use(express.json())
+
+app.use('/',userAuth)
+
+
+
 
 
 

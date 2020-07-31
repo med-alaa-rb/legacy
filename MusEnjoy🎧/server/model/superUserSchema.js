@@ -1,49 +1,35 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
 
-const auth = new Schema({
+
+const User = new Schema({
   name: {
     type: String,
-    trim: true,
+    // trim: true,
     required: true,
+    minlength: 3,
+    maxlength: 50
   },
   email: {
     type: String,
-    trim: true,
+    // trim: true,
+    required: true,
+    minlength: 5,
+    maxlength: 255
+    // unique: true
   },
   pass: {
     type: String,
-    trim: true,
+    // trim: true,
     required: true,
+    minlength: 3,
+    maxlength: 25
   },
 });
 
-var userData = mongoose.model("userData", auth);
+const userData = mongoose.model("userData", User);
 
-var user1 = new userData({
-  name: "insaf",
-  pass: "eeee",
-});
 
-bcrypt.genSalt(saltRounds, function (err, salt) {
-    if (err) {
-      throw err
-    } else {
-      bcrypt.hash(user1.pass, salt, function(err, hash) {
-        if (err) {
-          throw err
-        } else {
-          console.log(hash)
-          }
-      })
-    }
-  })
 
-user1.save((err, userData) => {
-  if (err) return console.error(err);
-  console.log(userData.name + " saved to collection");
-});
 
 module.exports = userData;
