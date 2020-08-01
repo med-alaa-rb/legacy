@@ -6,9 +6,10 @@ const bodyParser = require('body-parser');
 require('dotenv').config()
 const uriDb = process.env.MONGO_URI
 app.use(bodyParser.urlencoded({extended: false}));
-const userData = require('./model/superUserSchema');
+const { userData } = require('./model/superUserSchema');
 // const routes = require('./routes/router.js');
 const userAuth = require('./routes/auth');
+
 
 
 
@@ -31,10 +32,12 @@ superdb.once('open', function() {
 //   res.send('HellO')
 // });
 
+
+
 app.use(express.json())
 
-app.use('/',userAuth)
 
+app.use('/',userAuth)
 
 
 

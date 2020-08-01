@@ -3,27 +3,28 @@ const Schema = mongoose.Schema;
 
 
 const User = new Schema({
+    
   name: {
-    type: String,
+    type: String
     // trim: true,
-    required: true,
-    minlength: 3,
-    maxlength: 50
+    // required: true,
+    // minlength: 3,
+    // maxlength: 50
   },
   email: {
-    type: String,
+    type: String
     // trim: true,
-    required: true,
-    minlength: 5,
-    maxlength: 255
+    // required: true,
+    // minlength: 5,
+    // maxlength: 255,
     // unique: true
   },
   pass: {
-    type: String,
+    type: String
     // trim: true,
-    required: true,
-    minlength: 3,
-    maxlength: 25
+    // required: true,
+    // minlength: 3,
+    // maxlength: 25
   },
 });
 
@@ -32,4 +33,5 @@ const userData = mongoose.model("userData", User);
 
 
 
-module.exports = userData;
+module.exports.userData = userData;
+module.exports.User = User;
