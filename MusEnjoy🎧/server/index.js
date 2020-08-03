@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 const { userData } = require('./model/superUserSchema');
 // const routes = require('./routes/router.js');
 const userAuth = require('./routes/auth');
-
+const admin = require('./routes/admin')
 
 
 
@@ -38,6 +38,7 @@ app.use(express.json())
 
 
 app.use('/',userAuth)
+app.use('/admin', admin)
 
 
 

@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 const User = new Schema({
-    
   name: {
-    type: String
+    type: String,
     // trim: true,
     // required: true,
     // minlength: 3,
     // maxlength: 50
   },
   email: {
-    type: String
+    type: String,
     // trim: true,
     // required: true,
     // minlength: 5,
@@ -20,18 +18,16 @@ const User = new Schema({
     // unique: true
   },
   pass: {
-    type: String
+    type: String,
     // trim: true,
     // required: true,
     // minlength: 3,
     // maxlength: 25
   },
+  isAdmin: { type: Boolean },
 });
 
 const userData = mongoose.model("userData", User);
 
-
-
-
 module.exports.userData = userData;
-module.exports.User = User;
+//module.exports.User = User;

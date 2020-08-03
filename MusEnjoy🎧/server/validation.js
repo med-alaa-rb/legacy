@@ -4,10 +4,11 @@ const joi = require('@hapi/joi');
 
 
 
-// const registerValidation = data =>{
     const singUpSchema = joi.object({
         name: joi.string()
-                 .min(6)
+                 .alphanum()
+                 .min(3)
+                 .max(30)
                  .required(),
         email:joi.string()
                  .trim()
@@ -17,15 +18,12 @@ const joi = require('@hapi/joi');
         pass: joi.string()
                  .trim()
                  .required()
-                 .min(6)                    
+                 .min(6),
+        repeat_pass: joi.ref('pass'),
+        isAdmin : false                       
     });
-    // console.log(data)
-    // console.log('AAAAAA')
-    // console.log(schema)
-    // return schema.validate(data)
-// };
+  
 
-// const loginValidation = data =>{
     const loginSchema = joi.object({
         email: joi.string()
                   .trim()
@@ -35,9 +33,8 @@ const joi = require('@hapi/joi');
         pass: joi.string()
                  .trim()
                  .required()
-                 .min(6)                    
+                 .min(6),
     });
-// };
 
 
 module.exports = {singUpSchema, loginSchema};
