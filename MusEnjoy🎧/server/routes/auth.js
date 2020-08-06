@@ -12,6 +12,7 @@ const jwt = require("jsonwebtoken");
 
 
 auth.post("/register", async (req, res) => {
+  // res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
   const { error } = await singUpSchema.validateAsync(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 

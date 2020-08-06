@@ -15,7 +15,7 @@ const admin = require('./routes/admin');
 
 
 // app.use(cors)
-// app.use(express.static('public'))
+app.use(express.static('public'))
 
 
 mongoose.connect(uriDb, {useCreateIndex: true,
@@ -36,14 +36,7 @@ superdb.once('open', function() {
 //   res.send('HellO')
 // });
 
-// app.use(function (req, res, next) {
-//   //Enabling CORS
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-//   res.header("Access-Control-Allow-Headers", "Origin", "X-Requested-With", "Content-Type" , 
-//   "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization");
-//     next();
-//   });
+
 
 
 app.use(express.json())
@@ -55,6 +48,6 @@ app.use('/admin', admin)
 
 
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 app.listen(port , () => console.log(`app listening to http://localhost:${port}/`));
