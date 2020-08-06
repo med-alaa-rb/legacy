@@ -3,9 +3,13 @@ const bcrypt = require("bcrypt");
 const { userData } = require("../model/superUserSchema");
 const { singUpSchema, loginSchema } = require("../validation");
 const jwt = require("jsonwebtoken");
+
 // const checkAdmin = require("./adminValidation");
 
 //  console.log(loginSchema)
+
+
+
 
 auth.post("/register", async (req, res) => {
   const { error } = await singUpSchema.validateAsync(req.body);
