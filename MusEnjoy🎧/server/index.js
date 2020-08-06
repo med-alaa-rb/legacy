@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// const cors = require('cors')
+const cors = require('cors')
 const mongoose = require('mongoose');
 // const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -14,7 +14,7 @@ const admin = require('./routes/admin');
 
 
 
-// app.use(cors)
+app.use(cors())
 app.use(express.static('public'))
 
 
@@ -48,6 +48,6 @@ app.use('/admin', admin)
 
 
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 8080
 
 app.listen(port , () => console.log(`app listening to http://localhost:${port}/`));

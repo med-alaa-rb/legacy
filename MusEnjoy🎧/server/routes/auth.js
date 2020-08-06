@@ -8,10 +8,8 @@ const jwt = require("jsonwebtoken");
 
 //  console.log(loginSchema)
 
-
-
-
 auth.post("/register", async (req, res) => {
+  console.log(req.body);
   // res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
   const { error } = await singUpSchema.validateAsync(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -29,6 +27,7 @@ auth.post("/register", async (req, res) => {
     isAdmin: false,
   });
   try {
+    console.log(user.name);
     const savedUser = await user.save();
     res.send(`${user.name} saved to db`);
   } catch (err) {
@@ -60,18 +59,17 @@ auth.post("/login", async (req, res) => {
     if (!validPass) return res.status(400).send("Invalid password");
 
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header("auth-token", token)/*send(token)*/
+    res.header("auth-token", token); /*send(token)*/
 
     const redirect = () => {
-    var checkAdmin = user.isAdmin
-    if(checkAdmin === true){
-       res.send('admin')
-    }
-    else{
-      res.send('user')
-    }
-  }
-  redirect();
+      var checkAdmin = user.isAdmin;
+      if (checkAdmin === true) {
+        res.send("admin");
+      } else {
+        res.send("user");
+      }
+    };
+    redirect();
   } catch (err) {
     throw err;
   }
